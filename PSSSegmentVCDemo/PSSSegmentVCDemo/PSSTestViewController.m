@@ -29,6 +29,9 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:24];
     _label = label;
+    if (self.theID) {
+        label.text = [NSString stringWithFormat:@"ID=%ld", self.theID];
+    }
 }
 
 - (void)setTheID:(NSInteger)theID

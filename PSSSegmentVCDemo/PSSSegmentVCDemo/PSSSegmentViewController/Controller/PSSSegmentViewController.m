@@ -19,6 +19,8 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 
 @property (nonatomic, strong) PSSViewControllerModel *currentVCModel;
 
+@property (nonatomic, assign) BOOL firstLoad;
+
 @end
 
 @implementation PSSSegmentViewController
@@ -63,25 +65,17 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PSSCollectionViewID forIndexPath:indexPath];
     
-    UIViewController *vc = [self getViewControllerAtIndex:indexPath.row];
-    vc.view.frame = self.view.bounds;
-    [cell.contentView addSubview:vc.view];
-    [self removeSubviewsSuperview:cell.contentView Except:vc.view];
-    
-    // 数据保护
-    if (indexPath.row >= self.modelArray.count) {
-        return cell;
-    }
+    [self reloadCellWithIndex:indexPath.item cell: cell];
     
     if ([self.delegate respondsToSelector:@selector(pss_segmentVCModel:didLoadItemWithIndex:)]) {
         [self.delegate pss_segmentVCModel:self.modelArray[indexPath.row] didLoadItemWithIndex:indexPath.row];
     }
     
     // 这里保证：第一次加载时，也调用一次 pss_segmentVCModel:didShowWithIndex: 代理方法，避免遗漏
-    if (_selectedIndex == 0 && indexPath.row == 0) {
+    if (_selectedIndex == 0 && indexPath.row == 0 && !self.firstLoad) {
         [self didShowWithModel:self.modelArray[indexPath.row] index:indexPath.row];
+        self.firstLoad = YES;
     }
-        
     return cell;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -96,6 +90,7 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     double offSet_x = scrollView.contentOffset.x;
     NSInteger index = offSet_x / itemWidth;
     _selectedIndex = index;
+    [self reloadCellWithIndex:index cell: nil];
     [self didShowWithModel:self.modelArray[index] index:index];
 }
 // 外部调用pss_scrollToItemWithIndex时，滑动动画结束会触发
@@ -105,9 +100,28 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     double offSet_x = scrollView.contentOffset.x;
     NSInteger index = offSet_x / itemWidth;
     _selectedIndex = index;
+    [self reloadCellWithIndex:index cell: nil];
     [self didShowWithModel:self.modelArray[_selectedIndex] index:_selectedIndex];
-    [self.collectionView reloadData];
 }
+
+- (void)reloadCellWithIndex:(NSInteger)index cell:(UICollectionViewCell *)cell
+{
+    if (!cell) {
+        cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    }
+    
+    UIViewController *vc = [self getViewControllerAtIndex:index];
+    vc.view.frame = self.view.bounds;
+    
+    [cell.contentView addSubview:vc.view];
+    [self removeSubviewsSuperview:cell.contentView Except:vc.view];
+    
+    // 数据保护
+    if (index >= self.modelArray.count) {
+        return;
+    }
+}
+
 // 滚动到哪一条
 - (void)pss_scrollToItemWithIndex:(NSInteger)index
 {
@@ -171,7 +185,6 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     }
     if (self.timer == nil) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:PSSRefreshTimeUnit target:self selector:@selector(timerRuning:) userInfo:nil repeats:YES];
-        [self.timer fire];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }
 }

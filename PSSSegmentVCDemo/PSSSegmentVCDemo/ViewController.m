@@ -75,10 +75,10 @@
     // 还未显示时（控制器加载完成，还未显示），就会回调
     // 可以将上面代理方法的实现拖到这里看看效果
 }
-- (void)pss_segmengVCModel:(PSSViewControllerModel *)vcModel timeOutItemWithIndex:(NSInteger)index
-{
-    // vc达到缓存时间时调用，如果实现了这个代理方法，就不会删除控制器和视图；如果没实现这个方法，到时间之后帮你清除控制器
-}
+//- (void)pss_segmengVCModel:(PSSViewControllerModel *)vcModel timeOutItemWithIndex:(NSInteger)index
+//{
+//    // vc达到缓存时间时调用，如果实现了这个代理方法，就不会删除控制器和视图；如果没实现这个方法，到时间之后帮你清除控制器
+//}
 
 
 - (void)didReceiveMemoryWarning {
