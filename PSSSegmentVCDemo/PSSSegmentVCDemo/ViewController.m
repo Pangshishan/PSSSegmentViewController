@@ -65,19 +65,19 @@
 }
 - (void)pss_segmentVCModel:(PSSViewControllerModel *)vcModel didShowWithIndex:(NSInteger)index
 {
-    // 可以对vcModel中的ViewController进行一些操作
-    PSSTestViewController *testVC = (PSSTestViewController *)vcModel.viewController;
-    testVC.theID = vcModel.vcID;
+    // 分页滚到了这一页
     self.segmentControl.selectedIndex = index;
 }
+// 在控制器调用ViewDidLoad之前调用
 - (void)pss_segmentVCModel:(PSSViewControllerModel *)vcModel didLoadItemWithIndex:(NSInteger)index
 {
-    // 还未显示时（控制器加载完成，还未显示），就会回调
-    // 可以将上面代理方法的实现拖到这里看看效果
+    PSSTestViewController *testVC = (PSSTestViewController *)vcModel.viewController;
+    testVC.theID = vcModel.vcID;
 }
 //- (void)pss_segmengVCModel:(PSSViewControllerModel *)vcModel timeOutItemWithIndex:(NSInteger)index
 //{
-//    // vc达到缓存时间时调用，如果实现了这个代理方法，就不会删除控制器和视图；如果没实现这个方法，到时间之后帮你清除控制器
+//    // vc达到缓存时间时调用;
+//    // 如果实现了这个代理方法，就不会删除控制器和视图；如果没实现这个方法，到时间之后帮你清除控制器
 //}
 
 
