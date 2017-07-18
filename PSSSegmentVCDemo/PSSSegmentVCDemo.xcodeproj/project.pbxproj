@@ -13,11 +13,11 @@
 		890BACD41EA5DD4000C31D17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 890BACD21EA5DD4000C31D17 /* Main.storyboard */; };
 		890BACD61EA5DD4000C31D17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 890BACD51EA5DD4000C31D17 /* Assets.xcassets */; };
 		890BACD91EA5DD4000C31D17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 890BACD71EA5DD4000C31D17 /* LaunchScreen.storyboard */; };
-		890BACE61EA5DF1200C31D17 /* PSSSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890BACE51EA5DF1200C31D17 /* PSSSegmentViewController.m */; };
 		890BACEA1EA5E57D00C31D17 /* PSSSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 890BACE91EA5E57D00C31D17 /* PSSSegmentControl.m */; };
 		890BACED1EA5FADB00C31D17 /* PSSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890BACEC1EA5FADB00C31D17 /* PSSTestViewController.m */; };
 		890BACF01EA5FE1400C31D17 /* PSSViewControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 890BACEF1EA5FE1400C31D17 /* PSSViewControllerModel.m */; };
 		89EEEBFE1EA727DD00F7A5B6 /* PSSSegmentVCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EEEBFD1EA727DD00F7A5B6 /* PSSSegmentVCConst.m */; };
+		B6C808111F1E03CE00874F53 /* PSSSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C808101F1E03CE00874F53 /* PSSSegmentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,6 @@
 		890BACD51EA5DD4000C31D17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		890BACD81EA5DD4000C31D17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		890BACDA1EA5DD4000C31D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		890BACE41EA5DF1200C31D17 /* PSSSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSSegmentViewController.h; sourceTree = "<group>"; };
-		890BACE51EA5DF1200C31D17 /* PSSSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSSegmentViewController.m; sourceTree = "<group>"; };
 		890BACE81EA5E57D00C31D17 /* PSSSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSSegmentControl.h; sourceTree = "<group>"; };
 		890BACE91EA5E57D00C31D17 /* PSSSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSSegmentControl.m; sourceTree = "<group>"; };
 		890BACEB1EA5FADB00C31D17 /* PSSTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSTestViewController.h; sourceTree = "<group>"; };
@@ -41,6 +39,8 @@
 		890BACEF1EA5FE1400C31D17 /* PSSViewControllerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSViewControllerModel.m; sourceTree = "<group>"; };
 		89EEEBFC1EA727DD00F7A5B6 /* PSSSegmentVCConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSSegmentVCConst.h; sourceTree = "<group>"; };
 		89EEEBFD1EA727DD00F7A5B6 /* PSSSegmentVCConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSSegmentVCConst.m; sourceTree = "<group>"; };
+		B6C8080F1F1E03CE00874F53 /* PSSSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSSegmentViewController.h; sourceTree = "<group>"; };
+		B6C808101F1E03CE00874F53 /* PSSSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSSegmentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +111,8 @@
 		890BACE11EA5DEEB00C31D17 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				890BACE41EA5DF1200C31D17 /* PSSSegmentViewController.h */,
-				890BACE51EA5DF1200C31D17 /* PSSSegmentViewController.m */,
+				B6C8080F1F1E03CE00874F53 /* PSSSegmentViewController.h */,
+				B6C808101F1E03CE00874F53 /* PSSSegmentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,9 +220,9 @@
 				890BACEA1EA5E57D00C31D17 /* PSSSegmentControl.m in Sources */,
 				890BACD11EA5DD4000C31D17 /* ViewController.m in Sources */,
 				890BACF01EA5FE1400C31D17 /* PSSViewControllerModel.m in Sources */,
-				890BACE61EA5DF1200C31D17 /* PSSSegmentViewController.m in Sources */,
 				890BACED1EA5FADB00C31D17 /* PSSTestViewController.m in Sources */,
 				890BACCE1EA5DD4000C31D17 /* AppDelegate.m in Sources */,
+				B6C808111F1E03CE00874F53 /* PSSSegmentViewController.m in Sources */,
 				890BACCB1EA5DD4000C31D17 /* main.m in Sources */,
 				89EEEBFE1EA727DD00F7A5B6 /* PSSSegmentVCConst.m in Sources */,
 			);

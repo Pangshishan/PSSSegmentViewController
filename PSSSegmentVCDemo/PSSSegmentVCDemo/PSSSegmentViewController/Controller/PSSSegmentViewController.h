@@ -34,7 +34,7 @@
  * vcModel：里面存着已经显示的控制器 和 区分控制器的属性
  * index：位置
  */
-- (void)pss_segmengVCModel:(PSSViewControllerModel *)vcModel timeOutItemWithIndex:(NSInteger)index;
+- (void)pss_segmentVCModel:(PSSViewControllerModel *)vcModel timeOutItemWithIndex:(NSInteger)index;
 
 @end
 
@@ -44,7 +44,7 @@
 
 @property (nonatomic, assign, readonly) NSInteger selectedIndex;
 
-// 缓存控制器多久刷新一次
+// 缓存控制器多久刷新一次, 设置为0时(或者小于最小刷新间隔时), 取消此机制
 @property (nonatomic, assign) NSTimeInterval refreshTime;
 
 // 请用此方法初始化

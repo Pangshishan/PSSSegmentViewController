@@ -57,6 +57,7 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     collectionView.dataSource = self;
     collectionView.pagingEnabled = YES;
     collectionView.backgroundColor = [UIColor whiteColor];
+    collectionView.allowsSelection = NO;
     
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:PSSCollectionViewID];
 }
@@ -64,9 +65,7 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PSSCollectionViewID forIndexPath:indexPath];
-    
     [self reloadCellWithIndex:indexPath.item cell: cell];
-    
     // 这里保证：第一次加载时，也调用一次 pss_segmentVCModel:didShowWithIndex: 代理方法，避免遗漏
     if (_selectedIndex == 0 && indexPath.row == 0 && !self.firstLoad) {
         [self didShowWithModel:self.modelArray[indexPath.row] index:indexPath.row];
@@ -109,8 +108,9 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     UIViewController *vc = [self getViewControllerAtIndex:index];
     vc.view.frame = self.view.bounds;
     
+    [self addChildViewController:vc];
     [cell.contentView addSubview:vc.view];
-    [self removeSubviewsSuperview:cell.contentView Except:vc.view];
+    [self removeSubviewsSuperview:cell.contentView Except:vc];
     
     // 数据保护
     if (index >= self.modelArray.count) {
@@ -146,10 +146,11 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     }
     return nil;
 }
-- (void)removeSubviewsSuperview:(UIView *)superview Except:(UIView *)theView
+- (void)removeSubviewsSuperview:(UIView *)superview Except:(UIViewController *)vc
 {
     for (UIView *view in superview.subviews) {
-        if (![view isEqual:theView]) {
+        if (![view isEqual:vc.view]) {
+            [vc removeFromParentViewController];
             [view removeFromSuperview];
         }
     }
@@ -166,8 +167,8 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
         PSSViewControllerModel *vcModel = self.modelArray[i];
         NSTimeInterval duration = [nowDate timeIntervalSinceDate:vcModel.date];
         if (duration > self.refreshTime && ![self.currentVCModel isEqual:vcModel]) {
-            if ([self.delegate respondsToSelector:@selector(pss_segmengVCModel:timeOutItemWithIndex:)]) {
-                [self.delegate pss_segmengVCModel:vcModel timeOutItemWithIndex:i];
+            if ([self.delegate respondsToSelector:@selector(pss_segmentVCModel:timeOutItemWithIndex:)]) {
+                [self.delegate pss_segmentVCModel:vcModel timeOutItemWithIndex:i];
             } else {
                 [vcModel.viewController removeFromParentViewController];
                 [vcModel.viewController.view removeFromSuperview];
