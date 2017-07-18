@@ -67,10 +67,6 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     
     [self reloadCellWithIndex:indexPath.item cell: cell];
     
-    if ([self.delegate respondsToSelector:@selector(pss_segmentVCModel:didLoadItemWithIndex:)]) {
-        [self.delegate pss_segmentVCModel:self.modelArray[indexPath.row] didLoadItemWithIndex:indexPath.row];
-    }
-    
     // 这里保证：第一次加载时，也调用一次 pss_segmentVCModel:didShowWithIndex: 代理方法，避免遗漏
     if (_selectedIndex == 0 && indexPath.row == 0 && !self.firstLoad) {
         [self didShowWithModel:self.modelArray[indexPath.row] index:indexPath.row];
@@ -142,6 +138,9 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
         if (!vcModel.viewController) {
             vcModel.viewController = [[vcModel.vcClass alloc] init];
             vcModel.date = [NSDate date];
+            if ([self.delegate respondsToSelector:@selector(pss_segmentVCModel:didLoadItemWithIndex:)]) {
+                [self.delegate pss_segmentVCModel:self.modelArray[index] didLoadItemWithIndex:index];
+            }
         }
         return vcModel.viewController;
     }
