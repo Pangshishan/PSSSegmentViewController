@@ -8,7 +8,7 @@
 
 #import "PSSSegmentViewController.h"
 #import "PSSSegmentVCConst.h"
-
+#import "PSSWeakProxy.h"
 static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 
 @interface PSSSegmentViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -60,6 +60,10 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     collectionView.allowsSelection = NO;
     
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:PSSCollectionViewID];
+    
+    if (self.defaultIndex < self.modelArray.count) {
+        [collectionView setContentOffset:CGPointMake(self.view.bounds.size.width * self.defaultIndex, 0) animated:NO];
+    }
 }
 #pragma mark - collectionView代理方法
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +71,7 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PSSCollectionViewID forIndexPath:indexPath];
     [self reloadCellWithIndex:indexPath.item cell: cell];
     // 这里保证：第一次加载时，也调用一次 pss_segmentVCModel:didShowWithIndex: 代理方法，避免遗漏
-    if (_selectedIndex == 0 && indexPath.row == 0 && !self.firstLoad) {
+    if (!self.firstLoad) {
         [self didShowWithModel:self.modelArray[indexPath.row] index:indexPath.row];
         self.firstLoad = YES;
     }
@@ -184,13 +188,21 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
         return;
     }
     if (self.timer == nil) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:PSSRefreshTimeUnit target:self selector:@selector(timerRuning:) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:PSSRefreshTimeUnit target:[PSSWeakProxy proxyWithTarget:self] selector:@selector(timerRuning:) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }
 }
 - (void)dealloc
 {
     [self.timer invalidate];
+}
+
+- (void)setDefaultIndex:(NSInteger)defaultIndex
+{
+    _defaultIndex = defaultIndex;
+    if (_defaultIndex < _modelArray.count) {
+        [_collectionView setContentOffset:CGPointMake(self.view.bounds.size.width * _defaultIndex, 0) animated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

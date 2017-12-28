@@ -8,7 +8,7 @@
 
 #import "PSSSegmentVCConst.h"
 
-// 10秒检测一次
-const NSTimeInterval PSSRefreshTimeUnit = 5.0;
+// n秒检测一次
+const NSTimeInterval PSSRefreshTimeUnit = 10.0;
 
 

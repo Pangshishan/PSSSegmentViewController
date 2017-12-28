@@ -43,7 +43,6 @@
         [weakSelf.segmentViewController pss_scrollToItemWithIndex:index];
     };
     
-    
     // 初始化 segmentVC
     NSMutableArray *vcModelArr = [NSMutableArray new];
     for (int i = 0; i < titleArr.count; i++) {
@@ -57,6 +56,9 @@
     [self.view addSubview:segmentVC.view];
     // 如果不保存vc, 只加了vc.view, 当出了这条方法, vc就没有了, vc的view也被干掉了
     self.segmentViewController = segmentVC;
+    
+    // 默认在第几页
+    segmentVC.defaultIndex = 1;
     
     // 控制器12秒刷新一次缓存
     segmentVC.refreshTime = 12.0;

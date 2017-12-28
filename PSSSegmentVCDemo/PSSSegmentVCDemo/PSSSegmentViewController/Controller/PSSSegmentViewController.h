@@ -15,7 +15,7 @@
 
 @required
 /*
- * 描述：分页已经滑到某个位置是调用。第一次初始化显示第一页也会触发一次，避免遗漏。
+ * 描述：分页已经滑到某个位置是调用。加载第一页数据也会调用一次
  * vcModel：里面存着已经显示的控制器 和 区分控制器的属性
  * index：位置
  */
@@ -23,7 +23,7 @@
 
 @optional
 /*
- * 描述：index位置的分页控制器加载完成(创建控制器的时候回调), 可以在这里对vcModel中的VC做数据配置
+ * 描述：在每一页的viewDidLoad之前调用, 可以在这里对vcModel中的VC做数据配置
  * vcModel：里面存着已经显示的控制器 和 区分控制器的属性
  * index：位置
  */
@@ -46,6 +46,8 @@
 
 // 缓存控制器多久刷新一次, 设置为0时(或者小于最小刷新间隔时), 取消此机制
 @property (nonatomic, assign) NSTimeInterval refreshTime;
+/// 初始页
+@property (nonatomic, assign) NSInteger defaultIndex;
 
 // 请用此方法初始化
 - (instancetype)initWithViewControllers:(NSArray<PSSViewControllerModel *> *)vcArray;

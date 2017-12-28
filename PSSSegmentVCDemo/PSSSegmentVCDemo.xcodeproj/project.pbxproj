@@ -17,6 +17,7 @@
 		890BACED1EA5FADB00C31D17 /* PSSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890BACEC1EA5FADB00C31D17 /* PSSTestViewController.m */; };
 		890BACF01EA5FE1400C31D17 /* PSSViewControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 890BACEF1EA5FE1400C31D17 /* PSSViewControllerModel.m */; };
 		89EEEBFE1EA727DD00F7A5B6 /* PSSSegmentVCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EEEBFD1EA727DD00F7A5B6 /* PSSSegmentVCConst.m */; };
+		B60CB87E1FF4F1CC00A15A7F /* PSSWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B60CB87C1FF4F1CC00A15A7F /* PSSWeakProxy.m */; };
 		B6C808111F1E03CE00874F53 /* PSSSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C808101F1E03CE00874F53 /* PSSSegmentViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,8 @@
 		890BACEF1EA5FE1400C31D17 /* PSSViewControllerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSViewControllerModel.m; sourceTree = "<group>"; };
 		89EEEBFC1EA727DD00F7A5B6 /* PSSSegmentVCConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSSegmentVCConst.h; sourceTree = "<group>"; };
 		89EEEBFD1EA727DD00F7A5B6 /* PSSSegmentVCConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSSegmentVCConst.m; sourceTree = "<group>"; };
+		B60CB87C1FF4F1CC00A15A7F /* PSSWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSWeakProxy.m; sourceTree = "<group>"; };
+		B60CB87D1FF4F1CC00A15A7F /* PSSWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSWeakProxy.h; sourceTree = "<group>"; };
 		B6C8080F1F1E03CE00874F53 /* PSSSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSSSegmentViewController.h; sourceTree = "<group>"; };
 		B6C808101F1E03CE00874F53 /* PSSSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSSSegmentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,9 +104,9 @@
 		890BACE01EA5DEEB00C31D17 /* PSSSegmentViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B60CB8771FF4F16200A15A7F /* Lib */,
 				890BACE11EA5DEEB00C31D17 /* Controller */,
 				890BACE21EA5DEEB00C31D17 /* Model */,
-				890BACE31EA5DEEB00C31D17 /* View */,
 			);
 			path = PSSSegmentViewController;
 			sourceTree = "<group>";
@@ -128,13 +131,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		890BACE31EA5DEEB00C31D17 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		890BACE71EA5E57D00C31D17 /* PSSSegmentControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +138,23 @@
 				890BACE91EA5E57D00C31D17 /* PSSSegmentControl.m */,
 			);
 			path = PSSSegmentControl;
+			sourceTree = "<group>";
+		};
+		B60CB8771FF4F16200A15A7F /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				B60CB87B1FF4F1CC00A15A7F /* PSSWeakProxy */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		B60CB87B1FF4F1CC00A15A7F /* PSSWeakProxy */ = {
+			isa = PBXGroup;
+			children = (
+				B60CB87D1FF4F1CC00A15A7F /* PSSWeakProxy.h */,
+				B60CB87C1FF4F1CC00A15A7F /* PSSWeakProxy.m */,
+			);
+			path = PSSWeakProxy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +236,7 @@
 				890BACED1EA5FADB00C31D17 /* PSSTestViewController.m in Sources */,
 				890BACCE1EA5DD4000C31D17 /* AppDelegate.m in Sources */,
 				B6C808111F1E03CE00874F53 /* PSSSegmentViewController.m in Sources */,
+				B60CB87E1FF4F1CC00A15A7F /* PSSWeakProxy.m in Sources */,
 				890BACCB1EA5DD4000C31D17 /* main.m in Sources */,
 				89EEEBFE1EA727DD00F7A5B6 /* PSSSegmentVCConst.m in Sources */,
 			);
