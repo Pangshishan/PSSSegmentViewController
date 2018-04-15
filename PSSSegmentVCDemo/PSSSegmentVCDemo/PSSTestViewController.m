@@ -33,5 +33,10 @@
         label.text = [NSString stringWithFormat:@"ID=%ld", self.theID];
     }
 }
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    // 最好在这里布局
+    // 如果使用的是tableView或者collectionView, 并且使用的是frame布局, 需要在这里给frame
+}
 
 @end

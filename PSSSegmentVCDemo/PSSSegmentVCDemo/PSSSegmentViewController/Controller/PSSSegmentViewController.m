@@ -41,6 +41,11 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     // Do any additional setup after loading the view.
     [self addCollectionViewInThis];
 }
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [(UICollectionViewFlowLayout *)self.collectionView setItemSize:self.view.bounds.size];
+    self.collectionView.frame = self.view.bounds;
+}
 - (void)addCollectionViewInThis
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];

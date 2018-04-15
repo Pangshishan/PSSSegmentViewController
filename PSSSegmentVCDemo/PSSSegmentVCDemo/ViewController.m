@@ -54,9 +54,10 @@
     PSSSegmentViewController *segmentVC = [[PSSSegmentViewController alloc] initWithViewControllers:vcModelArr];
     segmentVC.view.frame = CGRectMake(0, CGRectGetMaxY(segmentC.frame), kScreenWidth, kScreenHeight - CGRectGetMaxY(segmentC.frame));
     [self.view addSubview:segmentVC.view];
-    // 如果不保存vc, 只加了vc.view, 当出了这条方法, vc就没有了, vc的view也被干掉了
-    self.segmentViewController = segmentVC;
     
+    self.segmentViewController = segmentVC;
+    [self addChildViewController:segmentVC];
+
     // 默认在第几页
     segmentVC.defaultIndex = 1;
     
