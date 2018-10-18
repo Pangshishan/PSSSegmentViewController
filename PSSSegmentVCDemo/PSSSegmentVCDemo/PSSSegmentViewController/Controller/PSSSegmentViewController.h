@@ -54,5 +54,6 @@
 
 // 滚动到哪一页
 - (void)pss_scrollToItemWithIndex:(NSInteger)index;
+- (void)pss_scrollToItemWithIndex:(NSInteger)index animate:(BOOL)animate;
 
 @end

@@ -43,7 +43,7 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [(UICollectionViewFlowLayout *)self.collectionView setItemSize:self.view.bounds.size];
+    [(UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout setItemSize:self.view.bounds.size];
     self.collectionView.frame = self.view.bounds;
 }
 - (void)addCollectionViewInThis
@@ -130,7 +130,11 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 // 滚动到哪一条
 - (void)pss_scrollToItemWithIndex:(NSInteger)index
 {
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    [self pss_scrollToItemWithIndex:index animate:YES];
+}
+- (void)pss_scrollToItemWithIndex:(NSInteger)index animate:(BOOL)animate {
+    _selectedIndex = index;
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animate];
 }
 - (void)didShowWithModel:(PSSViewControllerModel *)vcModel index:(NSInteger)index
 {
