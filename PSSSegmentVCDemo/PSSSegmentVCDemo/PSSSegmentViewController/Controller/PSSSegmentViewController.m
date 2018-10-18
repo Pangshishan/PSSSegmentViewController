@@ -67,7 +67,9 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:PSSCollectionViewID];
     
     if (self.defaultIndex < self.modelArray.count) {
-        [collectionView setContentOffset:CGPointMake(self.view.bounds.size.width * self.defaultIndex, 0) animated:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [collectionView setContentOffset:CGPointMake(self.view.bounds.size.width * self.defaultIndex, 0) animated:NO];
+        });
     }
 }
 #pragma mark - collectionView代理方法
@@ -210,7 +212,9 @@ static NSString * PSSCollectionViewID = @"PSSCollectionViewID";
 {
     _defaultIndex = defaultIndex;
     if (_defaultIndex < _modelArray.count) {
-        [_collectionView setContentOffset:CGPointMake(self.view.bounds.size.width * _defaultIndex, 0) animated:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView setContentOffset:CGPointMake(self.view.bounds.size.width * defaultIndex, 0) animated:NO];
+        });
     }
 }
 
